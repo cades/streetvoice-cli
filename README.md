@@ -20,7 +20,7 @@
 
 ## 支援環境
 
-裡論上能安裝 Node.js 和 VLC 的環境都可用，不過我只在 MacOS 10.14.2 Mojave 測試過。
+理論上能安裝 Node.js 和 VLC 的環境都可用，不過我只在 MacOS 10.14.2 Mojave 測試過。
 
 注意 Linux 上似乎有 `vlc` 與 `cvlc` 指令的區別，但我尚未深入研究。
 
