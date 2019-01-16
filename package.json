@@ -5,7 +5,7 @@
   "author": "cadeskao",
   "license": "MIT",
   "bin": {
-    "streetvoice-cli": "./src/index.js"
+    "streetvoice-cli": "./entry.js"
   },
   "scripts": {
     "start": "node src/index.js",
