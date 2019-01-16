@@ -1,0 +1,23 @@
+{
+  "name": "streetvoice-cli",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "cadeskao",
+  "license": "MIT",
+  "bin": {
+    "streetvoice-cli": "./src/index.js"
+  },
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "mocha --ui respec-given --require respec-given/na-loader"
+  },
+  "dependencies": {
+    "blessed": "^0.1.81",
+    "cheerio": "^1.0.0-rc.2",
+    "node-fetch": "^2.3.0"
+  },
+  "devDependencies": {
+    "mocha": "^5.2.0",
+    "respec-given": "^1.2.1"
+  }
+}
