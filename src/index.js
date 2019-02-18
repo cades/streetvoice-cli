@@ -8,7 +8,6 @@ const UI = require('./ui');
 
   UI.setup({
     songNameList: playlist.map(song => song.name),
-    player,
     onSongSelect: async songName => {
       const song = playlist.find(song => song.name === songName);
       const m3u8Url = await convertSongUrlToM3u8Url(song.href);

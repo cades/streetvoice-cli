@@ -3,7 +3,6 @@ const blessed = require('blessed');
 module.exports = {
   setup: ({
     songNameList,
-    player,
     onSongSelect,
     onQuit
   }) => {
