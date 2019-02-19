@@ -4,6 +4,8 @@ module.exports = {
   setup: ({
     songNameList,
     onSongSelect,
+    onTogglePause,
+    onSeek,
     onQuit
   }) => {
     const screen = blessed.screen({
@@ -38,14 +40,38 @@ module.exports = {
 
     const nowPlayingText = blessed.box({
       bottm: 0,
-      left: 'center',
+      left: 0,
       height: '10%',
-      width: '90%',
+      width: '50%',
       content: 'Now playing: none'
+    });
+    const playerStatusText = blessed.box({
+      bottom: 0,
+      left: 0,
+      height: '10%',
+      width: '50%',
+      content: 'Time:'
+    });
+    const progress = blessed.progressbar({
+      width: '50%',
+      height: 1,
+      left: 0,
+      bottom: 0,
+      orientation: 'horizontal',
+      style: {
+        bg: 'cyan',
+        bar: {
+          bg: 'blue',
+          fg: 'pink'
+        }
+      },
+      filled: 0
     });
 
     screen.append(list);
     screen.append(nowPlayingText);
+    screen.append(playerStatusText);
+    screen.append(progress);
 
     songNameList.map(songName => list.add(songName));
 
@@ -63,7 +89,31 @@ module.exports = {
       onQuit();
     });
 
+    screen.key(['space'], function(ch, key) {
+      onTogglePause();
+    });
+
+    let currPosition = 0;
+    let currDuration = 0;
+
+    screen.key(['right'], function(ch, key) {
+      onSeek(Math.min(currPosition + 15, currDuration));
+    });
+
+    screen.key(['left'], function(ch, key) {
+      onSeek(Math.max(currPosition - 15, 0));
+    });
+
     screen.render();
 
+    return {
+      setTime: ({ position, duration, status }) => {
+        currPosition = position;
+        currDuration = duration;
+        playerStatusText.setContent(`Time: ${position}/${duration} status: ${status}`);
+        progress.setProgress(Math.ceil(position / duration * 100));
+        screen.render();
+      }
+    };
   }
 };
